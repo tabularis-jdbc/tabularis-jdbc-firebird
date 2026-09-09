@@ -1,0 +1,14 @@
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    uses: tabularis-jdbc/.github/.github/workflows/plugin-release.yml@main
+    with:
+      plugin-name: ${{ github.event.repository.name }}
