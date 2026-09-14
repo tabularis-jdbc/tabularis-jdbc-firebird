@@ -2,12 +2,12 @@
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 export TABULARIS_JDBC_LOG=/tmp/tabularis-jdbc.log
 # Use local source if present (dev), otherwise catalog alias
-if [ -f "$SCRIPT_DIR/tabularis-jdbc.java" ]; then
-  export TABULARIS_JDBC_SOURCE="$SCRIPT_DIR/tabularis-jdbc.java"
+if [ -f "$SCRIPT_DIR/TabularisJDBC.java" ]; then
+  export TABULARIS_JDBC_SOURCE="$SCRIPT_DIR/TabularisJDBC.java"
   export TABULARIS_JDBC_REF="$TABULARIS_JDBC_SOURCE"
 else
-  export TABULARIS_JDBC_REF="tabularis-jdbc@tabularis-jdbc/tabularis-jdbc"
+  export TABULARIS_JDBC_REF="tabularis-jdbc@tabularis-jdbc"
 fi
 echo "--- $(date) ---" >> "$TABULARIS_JDBC_LOG"
 echo "ref=$TABULARIS_JDBC_REF" >> "$TABULARIS_JDBC_LOG"
-exec "$SCRIPT_DIR/jbang" $TABULARIS_JDBC_REF "$@" 2>>"$TABULARIS_JDBC_LOG"
+exec "$SCRIPT_DIR/jbang" "$TABULARIS_JDBC_REF" "$@" 2>>"$TABULARIS_JDBC_LOG"
